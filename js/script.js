@@ -7,20 +7,20 @@ function mostrarCarrusel(categoria) {
     if (categoria === 'infraestructura') {
         imagenes = [
             { src: 'img/infCercano.JPG', alt: 'Infrestructura Cercano' },
-            { src: 'img/infLejano.JPG', alt: 'Infrestructura Lejano' },
-            { src: 'img/infMedio.JPG', alt: 'Infrestructura Medio' }
+            { src: 'img/infMedio.JPG', alt: 'Infrestructura Medio' },
+            { src: 'img/infLejano.JPG', alt: 'Infrestructura Lejano' }
         ];
     } else if (categoria === 'objeto') {
         imagenes = [
             { src: 'img/objCercano.JPG', alt: 'Objeto Cercano' },
-            { src: 'img/objLejano.JPG', alt: 'Objeto Lejano' },
-            { src: 'img/objMedio.JPG', alt: 'Objeto Medio' }
+            { src: 'img/objMedio.JPG', alt: 'Objeto Medio' },
+            { src: 'img/objLejano.JPG', alt: 'Objeto Lejano' }
         ];
     } else if (categoria === 'persona') {
         imagenes = [
             { src: 'img/personCercana.JPG', alt: 'Persona Cercano' },
-            { src: 'img/personLejana.JPG', alt: 'Persona Lejano' },
-            { src: 'img/personMedio.JPG', alt: 'Persona Medio' }
+            { src: 'img/personMedio.JPG', alt: 'Persona Medio' },
+            { src: 'img/personLejana.JPG', alt: 'Persona Lejano' }
         ];
     }
 
