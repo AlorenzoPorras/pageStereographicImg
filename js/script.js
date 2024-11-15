@@ -76,7 +76,7 @@ function iniciarCarrusel() {
         items[index].classList.remove('active');
         index = (index + 1) % items.length;
         items[index].classList.add('active');
-    }, 10000);
+    }, 8000);
 }
 
 function detenerCarrusel() {
