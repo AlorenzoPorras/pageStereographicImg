@@ -160,4 +160,52 @@ footer a:hover {
     background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
     padding: 5px;
     border-radius: 5px;
+} 
+
+/* Botones flotantes en el modal */
+/* Eliminar cualquier borde azul o enfoque predeterminado */
+.btn-floating {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(200, 200, 200, 0.6);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+
+    outline: none; /* Elimina el borde azul */
+    box-shadow: none; /* Elimina sombras adicionales en algunos navegadores */
+}
+
+/* También elimina el borde al enfocar con teclado */
+.btn-floating:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Efecto al pasar el mouse */
+.btn-floating:hover {
+    background-color: rgba(255, 255, 255, 0.8); /* Más claro al pasar el cursor */
+    transform: scale(1.1); /* Efecto de agrandamiento */
+}
+
+.left-btn {
+    left: 10px;
+}
+
+.right-btn {
+    right: 10px;
+}
+
+.btn-floating:hover,
+.btn-floating:focus {
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo más claro */
+    transform: scale(1.1); /* Agrandamiento suave */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+    outline: none; /* Elimina el cuadro azul */
 }

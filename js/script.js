@@ -6,9 +6,9 @@ function mostrarCarrusel(categoria) {
     let imagenes = [];
     if (categoria === 'infraestructura') {
         imagenes = [
-            { src: 'img/infCercano.JPG', alt: 'Infrestructura Cercano' },
-            { src: 'img/infMedio.JPG', alt: 'Infrestructura Medio' },
-            { src: 'img/infLejano.JPG', alt: 'Infrestructura Lejano' }
+            { src: 'img/infCercano.JPG', alt: 'Infraestructura Cercano' },
+            { src: 'img/infMedio.JPG', alt: 'Infraestructura Medio' },
+            { src: 'img/infLejano.JPG', alt: 'Infraestructura Lejano' }
         ];
     } else if (categoria === 'objeto') {
         imagenes = [
@@ -35,21 +35,15 @@ function mostrarCarrusel(categoria) {
         img.src = imgData.src;
         img.alt = imgData.alt;
 
-        imgDiv.appendChild(img);
-        contenedor.appendChild(imgDiv);
+        // Añadir imagen y texto al div de la imagen
+        const imgText = document.createElement('p');
+        imgText.className = 'carrusel-text';
+        imgText.textContent = imgData.alt;
 
-                // Crear un elemento de texto para mostrar el nombre de la imagen
-                const imgText = document.createElement('p');
-                imgText.className = 'carrusel-text';
-                imgText.textContent = imgData.alt; // Usar el texto del atributo alt como nombre
-        
-                // Añadir imagen y texto al div de la imagen
-                imgDiv.appendChild(img);
-                imgDiv.appendChild(imgText);
-                
-                contenedor.appendChild(imgDiv);
-            });
-        
+        imgDiv.appendChild(img);
+        imgDiv.appendChild(imgText);
+        contenedor.appendChild(imgDiv);
+    });
 
     // Mostrar el modal
     const modal = document.getElementById('carrusel-3d-modal');
@@ -65,22 +59,43 @@ function cerrarModal() {
 }
 
 let carruselInterval;
+let carruselIndex = 0;
+
 function iniciarCarrusel() {
     const items = document.querySelectorAll('.carrusel-item');
-    let index = 0;
+    carruselIndex = 0; // Reiniciar índice del carrusel
 
     items.forEach(item => item.classList.remove('active'));
     if (items.length > 0) items[0].classList.add('active'); 
 
     carruselInterval = setInterval(() => {
-        items[index].classList.remove('active');
-        index = (index + 1) % items.length;
-        items[index].classList.add('active');
+        cambiarImagen(1); // Cambia automáticamente a la siguiente imagen
     }, 8000);
 }
 
 function detenerCarrusel() {
     clearInterval(carruselInterval);
+}
+
+// Cambiar la imagen del carrusel
+function cambiarImagen(direccion) {
+    const items = document.querySelectorAll('.carrusel-item');
+    if (items.length === 0) return;
+
+    items[carruselIndex].classList.remove('active'); // Ocultar la imagen actual
+    carruselIndex = (carruselIndex + direccion + items.length) % items.length; // Cambiar índice
+    items[carruselIndex].classList.add('active'); // Mostrar la nueva imagen
+}
+
+// Funciones para los botones flotantes
+function irIzquierda(event) {
+    event.stopPropagation(); // Evita cerrar el modal al hacer clic en el botón
+    cambiarImagen(-1); // Cambiar a la imagen anterior
+}
+
+function irDerecha(event) {
+    event.stopPropagation(); // Evita cerrar el modal al hacer clic en el botón
+    cambiarImagen(1); // Cambiar a la imagen siguiente
 }
 
 // Agregar eventos de clic en las tarjetas para abrir el carrusel
@@ -90,7 +105,6 @@ document.querySelectorAll('.card').forEach(card => {
         mostrarCarrusel(categoria);
     });
 });
-
 
 // Agregar eventos de hover para cambiar el brillo de las tarjetas
 document.querySelectorAll('.card').forEach(card => {
